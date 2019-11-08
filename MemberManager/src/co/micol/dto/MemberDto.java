@@ -14,6 +14,16 @@ public class MemberDto {
 	public MemberDto() {
 		
 	}
+	
+	public MemberDto(String id, String name, String pw, String addr, String tel) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.pw = pw;
+		this.addr = addr;
+		this.tel = tel;
+	}
+
 	public String getId() {
 		return id;
 	}
