@@ -13,7 +13,24 @@ public class BoardDto {
 	private int group;
 	private int step;
 	private int indent;
+	private String userid;
 	
+	public BoardDto(int id, String writer, Date wdate, String title, String contents) {
+		this.id = id;
+		this.writer = writer;
+		this.wdate = wdate;
+		this.title = title;
+		this.contents = contents;
+	}
+	
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
 	public BoardDto() {
 		// TODO Auto-generated constructor stub
 	}

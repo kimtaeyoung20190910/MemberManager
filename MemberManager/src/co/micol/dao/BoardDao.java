@@ -25,7 +25,16 @@ public class BoardDao extends DAO {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				dto = new BoardDto();
-				//
+				dto.setId(rs.getInt("bid"));
+				dto.setWriter(rs.getString("bwirter"));
+				dto.setTitle(rs.getString("btitle"));
+				dto.setContents(rs.getString("bcontents"));
+				dto.setWdate(rs.getDate("bdate"));
+				dto.setHit(rs.getInt("bhit"));
+				dto.setGroup(rs.getInt("bgroup"));
+				dto.setStep(rs.getInt("bstep"));
+				dto.setIndent(rs.getInt("bindent"));
+				dto.setUserid(rs.getString("userid"));
 				list.add(dto);
 			}
 		}catch(SQLException e)
@@ -36,7 +45,23 @@ public class BoardDao extends DAO {
 
 	public int insert(BoardDto dto) {
 		int n = 0;
-
+		String sql = "insert into mvc_board(bid,bname,btitle,bcontent,bdate,bgroup,bstep,bindent,userid)"
+				+ " values(b_name.nextval,?,?,?,?,b_name.currval,0,0,?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getWriter());
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getContents());
+			psmt.setDate(4, dto.getWdate());
+			psmt.setInt(5, dto.getGroup());
+			psmt.setInt(6, dto.getStep());
+			psmt.setInt(7, dto.getIndent());
+			psmt.setString(8, dto.getUserid());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		return n;
 	}
 
